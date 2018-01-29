@@ -1,0 +1,34 @@
+<div class="container color-dark">
+  <div class="col">
+    <p>Add a bucket list item</p>
+  </div>
+  <div class="col">
+    <!-- interpolation : 1 way databinding => from component to template {{ itemCount }} -->
+    <p>Your bucket list ({{ itemCount }})</p> 
+  </div>
+</div>
+<div class="container color-light" [@goals]="goals.length">
+  <div class="col">
+    <p class="sm">Use this from below to add a new bucket list goal. What do you want to do with your life?</p>
+    
+    <form>
+      <input type="text" class='txt' name="item" placeholder="Life goal.." [(ngModel)]="goalText">
+      <br>
+      
+      <!-- ngModel : 2 way databinding [(ngModel)]="goalText"-->
+      <span>{{ goalText }}</span>
+      
+      <!-- <input type="text" class="btn" value="{{btnTxt}}"> -->
+      <!-- property binding : 1 way databinding => from component to template [value]="btnText"-->
+      <!-- event binding => (click)="addItem()" -->
+      <input type="text" class="btn" [value]="btnText" (click)="addItem()"> 
+
+    </form>
+  </div>
+  <div class="col">
+    <p class="life-container" *ngFor="let goal of goals; let i = index" (click)= "removeItem(i)">
+      <!--Iwant to climb a mountain-->
+      {{ goal }}
+    </p>
+  </div>
+</div>
